@@ -50,8 +50,6 @@ SELECT TOP 1000 ROW_NUMBER() OVER (ORDER BY a.name) RowID,
 FROM sys.all_objects a
 CROSS JOIN sys.all_objects b
 GO
---INSERT INTO SmallTable (ID,FirstName,LastName,City)
---SELECT TOP(1) * FROM SmallTable
 
 -- Create Indexes 
 -- Create Clustered Index
@@ -88,7 +86,3 @@ DROP TABLE BigTable
 GO
 DROP TABLE SmallTable
 GO
-
-
-INSERT INTO SmallTable (ID,FirstName,LastName,City)
-SELECT TOP(1) * FROM SmallTable
