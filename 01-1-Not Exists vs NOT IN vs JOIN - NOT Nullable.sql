@@ -49,9 +49,6 @@ SELECT TOP 1000 ROW_NUMBER() OVER (ORDER BY a.name) RowID,
 FROM sys.all_objects a
 CROSS JOIN sys.all_objects b
 GO
---INSERT INTO SmallTable (ID,FirstName,LastName,City)
---SELECT TOP(1) * FROM SmallTable
-
 -- Create Indexes 
 -- Create Clustered Index
 CREATE CLUSTERED INDEX IX_SmallTable_ID
@@ -84,30 +81,6 @@ FROM BigTable bt
 LEFT JOIN SmallTable st ON bt.ID = st.ID
 WHERE st.ID IS NULL
 GO
-
-
---Not IN
-SELECT ID, City
-FROM SmallTable
-WHERE ID NOT IN 
-(SELECT ID
-FROM BigTable)
-GO
--- Not Exists
-SELECT ID, City
-FROM SmallTable
-WHERE NOT EXISTS
-(SELECT ID
-FROM BigTable
-WHERE SmallTable.ID = BigTable.ID)
-GO
--- Using JOIN
-SELECT bt.ID, bt.City
-FROM SmallTable st
-LEFT JOIN BigTable bt ON bt.ID = st.ID
-WHERE st.ID IS NULL
-GO
-
 
 /* Question: Which one of the above is best for performance */
 
